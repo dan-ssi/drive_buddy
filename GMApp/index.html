@@ -11,9 +11,60 @@
         <script type="text/javascript" src="GMLIB/system.js"></script>
         <script type="text/javascript" src="GMLIB/ui.js"></script>
         <script type="text/javascript" src="GMLIB/util.js"></script>
-        <script type="text/javascript" src="basic.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <link href='http://fonts.googleapis.com/css?family=Josefin+Sans:400,600' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="basic.css" type="text/css"/>
+        <script type="text/javascript" src="basic.js"></script>
+        <link rel="stylesheet" href="driveBuddy.css" type="text/css"/>
+        <script>
+        	function testFunc() {
+	        	$('#checkPointMarker').removeClass();
+	        	$('#checkPointMarker').addClass('checkPoint25');
+	        	
+        	}
+        	
+        	function switchEfficiency(level) {
+        		var levelName = 'currentDriveEfficient';
+        		switch(level) {
+	        		case 'efficient':
+	        			levelName = 'currentDriveEfficient';
+	        			break;
+	        		case 'efficientMax':
+	        			levelName = 'currentDriveEfficientMax';
+	        			break;
+	        		case 'poorAccel':
+	        			levelName = 'currentDrivePoorAccel';
+	        			break;
+	        		case 'poorBrake':
+	        			levelName = 'currentDrivePoorBrake';
+	        			break;
+	        		
+        		}
+	        	$('#currentDriveOverlay').removeClass();
+	        	$('#currentDriveOverlay').addClass(levelName);
+        	}
+        	
+        </script>
     </head>
     <body onload="gm.system.init();javascript:init();">
+    	<div id="container">
+    	<div id="leftBar">
+    	</div>
+    	<div id="currentDrive">
+    		<div class="screenTitle">
+    			Current Drive
+    		</div>
+    		<div id="currentDriveBackgroundContainer">
+    			<div id="currentDriveBackground">
+    				<div id="currentDriveOverlay" class="currentDriveEfficient">
+    				<input type="button" onclick="javascript:switchEfficiency('poorBrake');">
+    				<input type="button" onclick="javascript:testFunc();">
+    				</div>
+    				<div id="checkPointMarker" class="checkPoint0"></div>
+    			</div>
+    		</div>
+    	</div>
+    	</div>
+    	
     </body>
 </html>

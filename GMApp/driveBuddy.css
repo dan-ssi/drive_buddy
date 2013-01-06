@@ -1,0 +1,138 @@
+/*
+	CSS for Drive Buddy
+	Author: Daniel Slowinski
+	Date: 01/06/2013
+*/
+
+div {
+  -webkit-transition: all 0.75s ease-in-out;
+}
+
+body {
+	margin: 10px;
+	margin-top:100px;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #141720), color-stop(1, #2E3F55));
+	color:#EEE;
+	font-size:35px;
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+#container {
+	display: block;
+	position: relative;
+	width: 802px;
+	height: 392px;
+	margin: -10px;
+}
+
+#leftBar {
+	display: block;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 107px;
+	height: 392px;
+	background-image: url('Images/navigation_bar.png');
+}
+
+#currentDrive {
+	display: block;
+	position: absolute;
+	left: 107px;
+	top: 0px;
+	height: 392px;
+	width: 695px;
+}
+
+#currentDriveBackgroundContainer {
+	position: absolute;
+	display: block;
+	bottom: 0px;
+	left: 20px;
+	width: 533px;
+	height: 340px;
+}
+
+#currentDriveBackground {
+	width: 533px;
+	height: 340px;
+	display: block;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background-image: url('Images/overlay_normal.png');
+}
+
+#currentDriveOverlay {
+	width: 533px;
+	height: 340px;
+	display: block;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+.currentDriveEfficient {
+	background-image: url('Images/overlay_efficient.png');
+}
+
+.currentDriveEfficientMax {
+	background-image: url('Images/overlay_efficientbest.png');
+}
+
+.currentDrivePoorAccel {
+	background-image: url('Images/overlay_accel.png');
+}
+
+.currentDrivePoorBrake {
+	background-image: url('Images/overlay_brake.png');
+}
+
+#checkPointMarker {
+	display: block;
+	position: absolute;
+	background-image: url('Images/checkpoint.png');
+	width: 63px;
+	height: 90px;
+	left: 236px;
+}
+
+.checkPoint0 {
+	opacity: 1.0;
+	top: 22px;
+	-webkit-transform: scale(1.0);
+}
+
+.checkPoint25 {
+	opacity: 1.0;
+	top: 52px;
+	-webkit-transform: scale(1.2);
+}
+
+.checkPoint50 {
+	opacity: 1.0;
+	top: 120px;
+	-webkit-transform: scale(1.4);
+}
+
+.checkPoint75 {
+	opacity: 1.0;
+	top: 199px;
+	-webkit-transform: scale(1.6);
+}
+
+.checkPoint100 {
+	opacity: 0.0;
+	top: 410px;
+	-webkit-transform: scale(2.5);
+}
+
+.screenTitle {
+	position: absolute;
+	display: block;
+	font-align: center;
+	width: 100%;
+	height: 20px;
+	top: 10px;
+	left: 180px;
+}
