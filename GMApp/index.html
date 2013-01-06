@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="basic.css" type="text/css"/>
         <script type="text/javascript" src="basic.js"></script>
         <link rel="stylesheet" href="driveBuddy.css" type="text/css"/>
+        <script type='text/javascript' src='https://cdn.firebase.com/v0/firebase.js'></script>
         <script>
         	function testFunc() {
 	        	$('#checkPointMarker').removeClass();
@@ -44,6 +45,87 @@
 	        	$('#currentDriveOverlay').addClass(levelName);
         	}
         	
+        	gm.info.watchVehicleData(function (data) {
+	        	/* alert('speed:'+data['average_speed']); */
+	        	//updateCheckPoint(data['average_speed']);
+	        	checkSpeed(data['average_speed']);
+        	}, function (error) {
+	        	/* alert('error:'+error); */
+        	},['average_speed']);
+        	
+        	gm.system.watchSpeed(function(speed) {
+        		if (speed == 0) {
+        			clearInterval(checkpointUpdateInterval);
+        		} else {
+        			
+        		}
+        	}, function(error) {
+        		
+        	});
+        	
+        	var accelData = new Firebase('https://drivebuddy.firebaseio.com/');
+        	accelData.on('child_added', function(snapshot) {
+                var message = snapshot.val();
+                if (message.kind == 'accel') {
+                	var accel = message.text;
+                	if (accel < -2) {
+	                	switchEfficiency('poorBrake');
+                	}
+                	if (accel > 2) {
+	                	switchEfficiency('poorAccel');
+                	}
+                	if (Math.abs(accel) <= 2) {
+	                	switchEfficiency('efficient');
+                	}
+                	if (accel == 0) {
+	                	switchEfficiency('efficientMax');
+                	}
+                	//alert('moving');
+                }
+              });
+        	/* alert('moving'); */
+        	
+        	var checkpointUpdateInterval;
+        	var vehicleSpeed = 0;
+        	var vehicleDistance = 0;
+        	var distanceDelta = 288;
+        	var distanceStart = 22;
+        	var scaleEnd = 2.5;
+        	
+        	function updateCheckpointInterval() {
+        		vehicleDistance+=1;
+        		if (vehicleDistance == 10) {
+	        		$('#checkPointMarker').css('opacity',1.0);
+        		}
+        		var amount = vehicleDistance / 100;
+        		var newAmount = amount * distanceDelta + distanceStart;
+        		var newScale = (scaleEnd - 1) * amount + 1;
+        		$('#checkPointMarker').css('top',parseInt(newAmount)+'px');
+        		$('#checkPointMarker').css('scale',newScale);
+        		if (vehicleDistance == 85) {
+	        		$('#checkPointMarker').css('opacity',0);
+        		}
+        		if (vehicleDistance >= 100) {
+        			vehicleDistance = 0;
+        		}
+        	}
+        	
+        	function checkSpeed(newSpeed) {
+        		if (newSpeed == vehicleSpeed) {
+        			return;
+        		}
+        		vehicleSpeed = newSpeed;
+        		//if (checkpointUpdateInterval) {
+	        		clearInterval(checkpointUpdateInterval);
+	        	//}
+        		
+        		if (newSpeed > 10) {
+        			checkpointUpdateInterval = setInterval(function(){updateCheckpointInterval();},parseInt(2000/newSpeed));	
+        		} else {
+        			
+        		}
+	        	
+        	}
         </script>
     </head>
     <body onload="gm.system.init();javascript:init();">
@@ -60,7 +142,7 @@
     				<input type="button" onclick="javascript:switchEfficiency('poorBrake');">
     				<input type="button" onclick="javascript:testFunc();">
     				</div>
-    				<div id="checkPointMarker" class="checkPoint0"></div>
+    				<div id="checkPointMarker" class=""></div>
     			</div>
     		</div>
     	</div>
