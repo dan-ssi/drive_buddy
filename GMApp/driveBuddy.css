@@ -53,6 +53,35 @@ body {
 	height: 340px;
 }
 
+#scoresView {
+	display: none;
+	position: absolute;
+	left: 107px;
+	top: 0px;
+	height: 392px;
+	width: 695px;
+	background-image: url('Images/DEMO-SCORES.png');
+}
+
+#recentView {
+	display: none;
+	position: absolute;
+	left: 107px;
+	top: 0px;
+	height: 392px;
+	width: 695px;
+	background-image: url('Images/DEMO-RECENTDRIVES.jpg');
+}
+
+#currentDriveBackgroundContainer {
+	position: absolute;
+	display: block;
+	bottom: 0px;
+	left: 20px;
+	width: 533px;
+	height: 340px;
+}
+
 #currentDriveBackground {
 	width: 533px;
 	height: 340px;
@@ -135,4 +164,28 @@ body {
 	height: 20px;
 	top: 10px;
 	left: 180px;
+}
+
+#db_menu_0 {
+	position: absolute;
+	display: block;
+	top: 10px;
+	width: 100px;
+	height: 100px;
+}
+
+#db_menu_1 {
+	position: absolute;
+	display: block;
+	top: 120px;
+	width: 100px;
+	height: 100px;
+}
+
+#db_menu_2 {
+	position: absolute;
+	display: block;
+	top: 230px;
+	width: 100px;
+	height: 100px;
 }

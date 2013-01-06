@@ -126,11 +126,37 @@
         		}
 	        	
         	}
+        	
+        	setTimeout(function (){switchEfficiency('efficientMax')},1000);
+        	setTimeout(function (){switchEfficiency('poorBrake')},4000);
+        	setTimeout(function (){switchEfficiency('poorAccel')},7000);
+        	setTimeout(function (){switchEfficiency('efficient')},10000);
+        	
+        	function switchToCurrent() {
+        		$('#currentDrive').show();
+        		$('#recentView').hide();
+        		$('#scoresView').hide();
+        	}
+        	function switchToRecent() {
+        		$('#currentDrive').hide();
+        		$('#recentView').show();
+        		$('#scoresView').hide();
+        	}
+        	function switchToScores() {
+        		$('#currentDrive').hide();
+        		$('#recentView').hide();
+        		$('#scoresView').show();
+        	}
+        	switchToCurrent();
         </script>
     </head>
     <body onload="gm.system.init();javascript:init();">
     	<div id="container">
     	<div id="leftBar">
+    		<div id="db_menu_0" onclick="javascript:switchToCurrent();"></div>
+    		<div id="db_menu_1" onclick="javascript:switchToRecent();"></div>
+    		<div id="db_menu_2" onclick="javascript:switchToScores();"></div>
+    		
     	</div>
     	<div id="currentDrive">
     		<div class="screenTitle">
@@ -139,13 +165,13 @@
     		<div id="currentDriveBackgroundContainer">
     			<div id="currentDriveBackground">
     				<div id="currentDriveOverlay" class="currentDriveEfficient">
-    				<input type="button" onclick="javascript:switchEfficiency('poorBrake');">
-    				<input type="button" onclick="javascript:testFunc();">
     				</div>
     				<div id="checkPointMarker" class=""></div>
     			</div>
     		</div>
     	</div>
+    	<div id="recentView"></div>
+    	<div id="scoresView"></div>
     	</div>
     	
     </body>
